@@ -1,3 +1,17 @@
+
+# commit de mensajitos odiosos del dia 
+import datetime 
+def msj_hr():
+    hora = datetime.datetime.now().hour
+    if 5 <= hora < 12:
+        return "¡Buenos días player! ¡Hora de jugar tu futuro!"
+    elif 12 <= hora < 18:
+        return "¡Buenas tardes player! ¿ready or no?"
+    elif 18 <= hora < 22:
+        return "¡Buenas noches player disfrtua tu estancia y recuerda las microtransacciones! "
+    else:
+        return "Ya es tarde ya apagalo u sweatie"
+
 # Base code hangman.py for project colaboration.
 
 import random
@@ -44,3 +58,4 @@ def play():
 
 if __name__ == "__main__":
     play()
+    
