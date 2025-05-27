@@ -1,8 +1,21 @@
-# Base code hangman.py for project colaboration.
+
+# commit de mensajitos odiosos del dia 
 
 import random
 import string
+import datetime 
+def msj_hr():
+    hora = datetime.datetime.now().hour
+    if 5 <= hora < 12:
+        return "¡Buenos días player! ¡Hora de jugar tu futuro!"
+    elif 12 <= hora < 18:
+        return "¡Buenas tardes player! ¿ready or no?"
+    elif 18 <= hora < 22:
+        return "¡Buenas noches player disfrtua tu estancia y recuerda las microtransacciones! "
+    else:
+        return "Ya es tarde ya apagalo u sweatie"
 
+# Base code hangman.py for project colaboration.
 WORD_LIST = [
     "python", "desarrollo", "colaboracion", "github", "ahorcado",
     "programacion", "funcion", "variable", "algoritmo", "repositorio"
@@ -31,6 +44,7 @@ def play():
     guessed_letters = set()
 
     print("¡Bienvenido al juego del Ahorcado!")
+    print(msj_hr())
     # Sigue hasta adivinar todas las letras
     while not all(c in guessed_letters for c in word):
         display_state(word, guessed_letters)
@@ -44,3 +58,4 @@ def play():
 
 if __name__ == "__main__":
     play()
+    
