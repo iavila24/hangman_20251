@@ -4,14 +4,15 @@
 import random
 import string
 import datetime 
+
 def msj_hr():
     hora = datetime.datetime.now().hour
     if 5 <= hora < 12:
-        return "¡Buenos días player! ¡Hora de jugar tu futuro!"
+        return "¡Buenos dias player! ¡Hora de jugar tu futuro!"
     elif 12 <= hora < 18:
         return "¡Buenas tardes player! ¿ready or no?"
     elif 18 <= hora < 22:
-        return "¡Buenas noches player disfrtua tu estancia y recuerda las microtransacciones! "
+        return "¡Buenas noches player disfruta tu estancia y recuerda las microtransacciones!"
     else:
         return "Ya es tarde ya apagalo u sweatie"
 
@@ -42,20 +43,26 @@ def get_guess(guessed_letters):
 def play():
     word = choose_word()
     guessed_letters = set()
+    lives = 6
 
-    print("¡Bienvenido al juego del Ahorcado!")
+    print("Bienvenido al juego del Ahorcado")
     print(msj_hr())
-    # Sigue hasta adivinar todas las letras
-    while not all(c in guessed_letters for c in word):
+
+    while lives > 0 and not all(c in guessed_letters for c in word):
         display_state(word, guessed_letters)
+        print(f"Vidas restantes: {lives}")
         guess = get_guess(guessed_letters)
         guessed_letters.add(guess)
         if guess in word:
-            print(f"✔ ¡'{guess}' está en la palabra!")
+            print(f"'{guess}' esta en la palabra")
         else:
-            print(f"✖ '{guess}' no está en la palabra.")
-    print(f"\n🎉 ¡Felicidades! Has adivinado la palabra: {word}")
+            lives -= 1
+            print(f"'{guess}' no esta en la palabra. Pierdes una vida")
+
+    if all(c in guessed_letters for c in word):
+        print(f"\nFelicidades. Has adivinado la palabra: {word}")
+    else:
+        print(f"\nHas perdido. La palabra era: {word}")
 
 if __name__ == "__main__":
     play()
-    
