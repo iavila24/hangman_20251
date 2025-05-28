@@ -1,3 +1,4 @@
+#Comentario para el pull Request
 import random
 import string
 import datetime 
@@ -64,7 +65,7 @@ def play():
 
     print("¡Bienvenido al juego del Ahorcado!")
     print(msj_hr())
-    start_time = time.time(
+    start_time = time.time
     # Sigue hasta adivinar todas las letras
     while not all(c in guessed_letters for c in word):
         display_state(word, guessed_letters)
