@@ -1,11 +1,26 @@
 import random
 import string
+import datetime 
+import time
+def msj_hr():
+    hora = datetime.datetime.now().hour
+    if 5 <= hora < 12:
+        return "¡Buenos días player! ¡Hora de jugar tu futuro!"
+    elif 12 <= hora < 18:
+        return "¡Buenas tardes player! ¿ready or no?"
+    elif 18 <= hora < 22:
+        return "¡Buenas noches player disfrtua tu estancia y recuerda las microtransacciones! "
+    else:
+        return "Ya es tarde ya apagalo u sweatie"
 
+
+# Base code hangman.py for project colaboration.
 WORD_CATEGORIES = {
     "animales": ["leon", "elefante", "tigre", "jirafa", "mono"],
     "colores": ["rojo", "azul", "verde", "amarillo", "naranja"],
     "frutas": ["manzana", "platano", "uva", "fresa", "kiwi"]
 }
+
 
 def choose_word(category):
     return random.choice(WORD_CATEGORIES[category]).upper()
@@ -47,6 +62,9 @@ def play():
     word = choose_word(category)
     guessed_letters = set()
 
+    print("¡Bienvenido al juego del Ahorcado!")
+    print(msj_hr())
+    start_time = time.time(
     # Sigue hasta adivinar todas las letras
     while not all(c in guessed_letters for c in word):
         display_state(word, guessed_letters)
@@ -56,7 +74,11 @@ def play():
             print(f"✔ ¡'{guess}' está en la palabra!")
         else:
             print(f"✖ '{guess}' no está en la palabra.")
+    end_time = time.time()
+    duracion = end_time - start_time
     print(f"\n🎉 ¡Felicidades! Has adivinado la palabra: {word}")
+    print(f"Tiempo total de juego:{duracion:.2f}segundos")
 
 if __name__ == "__main__":
     play()
+    
