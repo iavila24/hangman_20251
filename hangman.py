@@ -1,7 +1,8 @@
 import random
 import string
-import datetime 
+import datetime
 import time
+
 def msj_hr():
     hora = datetime.datetime.now().hour
     if 5 <= hora < 12:
@@ -9,7 +10,7 @@ def msj_hr():
     elif 12 <= hora < 18:
         return "¡Buenas tardes player! ¿ready or no?"
     elif 18 <= hora < 22:
-        return "¡Buenas noches player disfrtua tu estancia y recuerda las microtransacciones! "
+        return "¡Buenas noches player disfruta tu estancia y recuerda las microtransacciones! " # Corregido "disfrtua" a "disfruta"
     else:
         return "Ya es tarde ya apagalo u sweatie"
 
@@ -57,14 +58,14 @@ def get_category_choice():
             print("→ Entrada inválida. Ingresa un número.")
 
 def play():
-    print("¡Bienvenido al juego del Ahorcado!")
+    print("¡Bienvenido al juego del Ahorcado!") # Esta línea ahora es única
+    print(msj_hr()) # El mensaje de la hora se imprime aquí
+
     category = get_category_choice()
     word = choose_word(category)
     guessed_letters = set()
 
-    print("¡Bienvenido al juego del Ahorcado!")
-    print(msj_hr())
-    start_time = time.time(
+    start_time = time.time() # Corregido el paréntesis de cierre aquí
     # Sigue hasta adivinar todas las letras
     while not all(c in guessed_letters for c in word):
         display_state(word, guessed_letters)
@@ -77,8 +78,7 @@ def play():
     end_time = time.time()
     duracion = end_time - start_time
     print(f"\n🎉 ¡Felicidades! Has adivinado la palabra: {word}")
-    print(f"Tiempo total de juego:{duracion:.2f}segundos")
+    print(f"Tiempo total de juego: {duracion:.2f} segundos") # Corregido el formato del string aquí
 
 if __name__ == "__main__":
     play()
-    
