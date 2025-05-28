@@ -1,45 +1,46 @@
+# Ahorcado con categorías de palabras
 import random
-import string
-import datetime 
 import time
+import datetime
+
+# Mensaje según hora del día
 def msj_hr():
     hora = datetime.datetime.now().hour
-    if 5 <= hora < 12:
-        return "¡Buenos días player! ¡Hora de jugar tu futuro!"
-    elif 12 <= hora < 18:
-        return "¡Buenas tardes player! ¿ready or no?"
-    elif 18 <= hora < 22:
-        return "¡Buenas noches player disfrtua tu estancia y recuerda las microtransacciones! "
+    if hora < 12:
+        return "¡Buenos días! Ya ponte a jugar >:("
+    elif hora < 18:
+        return "Ya comiste, ya jugaste, ¡ya ponte a trabajar!"
     else:
-        return "Ya es tarde ya apagalo u sweatie"
+        return "Ya es tarde, ya apágalo uwu sweatie"
 
-
-# Base code hangman.py for project colaboration.
+# Diccionario de categorías
 WORD_CATEGORIES = {
     "animales": ["leon", "elefante", "tigre", "jirafa", "mono"],
     "colores": ["rojo", "azul", "verde", "amarillo", "naranja"],
     "frutas": ["manzana", "platano", "uva", "fresa", "kiwi"]
 }
 
-
+# Elegir palabra de una categoría
 def choose_word(category):
     return random.choice(WORD_CATEGORIES[category]).upper()
 
+# Mostrar el estado actual de la palabra
 def display_state(word, guessed_letters):
     display = " ".join(c if c in guessed_letters else "_" for c in word)
     print(f"\nPalabra: {display}")
-    print(f"Letras adivinadas: {', '.join(sorted(guessed_letters))}")
 
+# Obtener letra del jugador
 def get_guess(guessed_letters):
     while True:
         guess = input("Adivina una letra: ").strip().upper()
-        if len(guess) != 1 or guess not in string.ascii_uppercase:
-            print("→ Ingresa UNA sola letra A–Z.")
+        if len(guess) != 1 or not guess.isalpha():
+            print("→ Ingresa solo una letra válida.")
         elif guess in guessed_letters:
-            print("→ Ya probaste esa letra.")
+            print("→ Ya la adivinaste. Intenta con otra.")
         else:
             return guess
 
+# Elegir categoría
 def get_category_choice():
     while True:
         print("\nElige una categoría:")
@@ -56,29 +57,27 @@ def get_category_choice():
         except ValueError:
             print("→ Entrada inválida. Ingresa un número.")
 
+# Juego principal
 def play():
     print("¡Bienvenido al juego del Ahorcado!")
+    print(msj_hr())
     category = get_category_choice()
     word = choose_word(category)
     guessed_letters = set()
 
-    print("¡Bienvenido al juego del Ahorcado!")
-    print(msj_hr())
-    start_time = time.time(
-    # Sigue hasta adivinar todas las letras
+    start_time = time.time()
+
     while not all(c in guessed_letters for c in word):
         display_state(word, guessed_letters)
         guess = get_guess(guessed_letters)
         guessed_letters.add(guess)
-        if guess in word:
-            print(f"✔ ¡'{guess}' está en la palabra!")
-        else:
-            print(f"✖ '{guess}' no está en la palabra.")
-    end_time = time.time()
-    duracion = end_time - start_time
-    print(f"\n🎉 ¡Felicidades! Has adivinado la palabra: {word}")
-    print(f"Tiempo total de juego:{duracion:.2f}segundos")
 
+    display_state(word, guessed_letters)
+    print("\n🎉 ¡Felicidades, adivinaste la palabra!")
+    
+    duration = time.time() - start_time
+    print(f"⏱️ Tiempo total: {round(duration, 2)} segundos")
+
+# Ejecutar el juego
 if __name__ == "__main__":
     play()
-    
