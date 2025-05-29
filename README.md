@@ -58,3 +58,9 @@ Este repositorio contiene una versión **ultra básica** del juego del Ahorcado.
 
 14. **Implementar sistema de vidas**
     Añade una variable `lives` (por ejemplo, `MAX_LIVES = 6`), decrementa al errar y termina el juego cuando llegue a 0.
+Este proyecto fue clonado y modificado por Josuehdz26 como práctica de Pull Requests.
+
+
+me la rifo machin profe le batalle pero se logro 
+
+Ojala y ser hacker para dejar mensajes en docummentos o notas en reposiotrios de gente me la rifo Josue hdz estubo aqui 
