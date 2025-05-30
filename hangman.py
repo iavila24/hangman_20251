@@ -64,3 +64,30 @@ def play():
 
 if __name__ == "__main__":
     play()
+def play_game():
+    word = choose_word().upper()
+    guessed_letters = set()
+    attempts = 6
+
+    print(msj_hr())
+    print("¡Bienvenido al juego del Ahorcado!")
+
+    while attempts > 0:
+        display_state(word, guessed_letters)
+        guess = get_guess(guessed_letters)
+        guessed_letters.add(guess)
+
+        if guess not in word:
+            attempts -= 1
+            print(f"Letra incorrecta. Te quedan {attempts} intentos.")
+        else:
+            print("¡Bien! La letra está en la palabra.")
+
+        if all(c in guessed_letters for c in word):
+            print(f"¡Felicidades! Adivinaste la palabra: {word}")
+            break
+    else:
+        print(f"Game Over. La palabra era: {word}")
+
+if __name__ == "__main__":
+    play_game()
